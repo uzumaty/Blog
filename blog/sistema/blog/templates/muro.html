@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block titulo %}MURO{% endblock %}
+
+{% block contenido %}
+
+<div class="container">
+
+    <div class="card text-center mx-sm-auto" style="background-color:#292b2d; border-color:white; padding:50px;">
+        <div class="card-header" style="border-color: white;">
+            <h6 style="color: white;">MURO DE PUBLICACIONES</h6>
+        </div>
+        <br>
+        {% if posts %}
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4">
+                <div class="card" style="width: 70%; margin:10px 50px 30px; height: 300px; overflow-y: auto;">
+                    <h3>{{ post.titulo }}</h3>
+                    <img src="{{ post.imagen.url }}" height="200px" class="card-img-top" alt="{{ post.titulo }}" style="padding:10px;">
+                    <div class="card-body">
+                        <p class="card-text" style="justify-content: center;">{{ post.contenido }}</p>
+                        <a name="" id="" class="btn btn-dark" href="{% url 'editar' post.id %}" role="button">Editar</a> |
+                        <a name="" id="btnBorrar{{ post.id }}" class="btn btn-danger"
+                            href="{% url 'eliminar' post.id %}" role="button">Borrar</a>
+                        <br>
+                        <br>
+                        <p class="card-text"><small>CREADO: {{ post.fecha_creacion }}</small></p>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+        </div>
+        <div class="row">
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <br><br><br><br>
+        <h1 style="color: white;"> No hay publicaciones :( </h1>
+        <br><br><br><br>
+        {% endif %}
+        <div class="card-footer text-muted" style="border-color:white;">
+            <br>       
+        </div>
+        <div class="d-grid gap-1 col-5 mx-auto">
+            <a name="" id="" class="btn btn-danger" href="{% url 'publicaciones' %}" role="button">Nueva publicación</a>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    {% for post in posts %}
+    document.getElementById('btnBorrar{{ post.id }}').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevenir el comportamiento normal del enlace
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¡Estás a punto de borrar esta publicación!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, borrar',
+            cancelButtonText: 'No, volver'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si el usuario confirma, redirige o realiza la acción de borrado
+                window.location.href = "{% url 'eliminar' post.id %}";
+            }
+        });
+    });
+    {% endfor %}
+</script>
+
+{% endblock %}

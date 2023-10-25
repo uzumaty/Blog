@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block titulo %}Publicaciones{% endblock %}
+
+{% block contenido %}
+<div class="table-responsive-lg">
+    <div class="container">
+        <div class="card" style="background-color: #292b2d; border-color:white;">
+            <div class="card-header" style="border-color:white;">
+                <h6 style="color:white;">CREA UNA PUBLICACIÓN</h6>
+                <br>
+                {% include "form.html" %}
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+{% endblock %}

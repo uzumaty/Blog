@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+
+<div class="container">
+    <div class="card" style="background-color: #292b2d; border-color:white;">
+        <div class="card-header" style="border-color:white;">
+            <h6 style="color: white;">BIENVENIDO A MI BLOG</h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 d-flex  justify-content-center">
+                    <a href="https://www.linkedin.com/in/matiasgc-/" target="_blank">
+                        <img class="inicial" src="https://scontent-scl2-1.xx.fbcdn.net/v/t39.30808-6/278871942_10217610418886463_8951831499724491333_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=JlAoKKTluBoAX-TxtUn&_nc_ht=scontent-scl2-1.xx&oh=00_AfAEK5XHt-BwjVLIuAMIYcitgmtENy_y1Qy29pAGUU77DQ&oe=653C9E93"
+                            alt="yo" width="300px" style="border-radius: 50%; margin-top:50px; margin-bottom:-35px;">
+                    </a>
+                </div>
+                <div class="col-md-8" style="padding: 100px;">
+                    <h5 style="color: white;" class="card-title">Mi nombre es Matias</h5>
+                    <p style="color: white;" class="card-text">Analista Programador, orientado al trabajo en equipo,
+                        amable y autodidacta. Tengo una fuerte disposición y pasión por mejorar y crecer
+                        profesionalmente. Disfruto colaborar, aprender por mi cuenta y enfrentar desafíos con una
+                        actitud positiva. Manejo tecnologías como JavaScript, HTML5, CSS3, MongoDB, Python, PHP, SQL y
+                        Scrum. Busco oportunidades que valoren el aprendizaje continuo y me permitan contribuir con mis
+                        habilidades en un entorno dinámico.</p>
+                    <br>
+                    <a  href="{% url 'muro' %}" class="btn btn-danger col-12 vamos">¡Vamos!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .inicial{
+        box-shadow: 0px 0px 8px 0px white;
+    }
+
+    .vamos{
+        box-shadow: 0px 0px 5px 0px white;
+    }
+</style>
+{% endblock %}

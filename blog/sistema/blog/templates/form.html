@@ -1,0 +1,54 @@
+<form enctype="multipart/form-data" method="post" id="miFormulario">
+    {% csrf_token %}
+    {% for campo in formulario %}
+        <div class="mb-3">
+            <label style="color: white;" for="" class="form-label">{{ campo.label }}:</label>
+
+            {% if campo.field.widget.input_type == 'file' and campo.value %}
+                <img src="{{MEDIA_URL}}/{{ campo.value }}" alt="" width="250px">
+                <br>
+            {% endif %}
+
+            <br>
+            <input
+                type="{{ campo.field.widget.input_type }}"
+                class="form-control"
+                name="{{ campo.name }}"
+                id=""
+                placeholder="{{ campo.label }}"
+                value="{{ campo.value | default:''}}"
+            />
+        </div>
+    {% endfor %}
+
+    <br><br>
+
+    <div class="d-grid gap-2 col-7 mx-auto">
+        <input class="btn btn-secondary" type="submit" value="Publicar" id="btnPublicar">
+        <a name="" id="btnCancelar" class="btn btn-danger" href="{% url 'muro' %}" role="button">Cancelar</a>
+    </div>
+
+    <br>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Agrega un evento para manejar el clic en el botón de publicar
+    document.getElementById('btnPublicar').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevenir el comportamiento normal del formulario
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¡Estás a punto de publicar!',
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, publicar',
+            cancelButtonText: 'No, volver'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Aquí puedes realizar alguna acción, como enviar el formulario
+                document.getElementById('miFormulario').submit();
+            }
+        });
+    });
+</script>

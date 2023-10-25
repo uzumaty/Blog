@@ -7,7 +7,7 @@ class Post(models.Model):
     contenido = models.TextField(verbose_name="Contenido")
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
-    imagen = models.ImageField(upload_to="blog", null=True, blank=True, verbose_name="Imagen")
+    imagen = models.ImageField(upload_to="blog", null=True, blank=False, verbose_name="Imagen")
     
     def __str__(self):
         return self.titulo

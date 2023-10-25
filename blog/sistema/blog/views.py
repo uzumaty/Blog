@@ -28,9 +28,7 @@ def otros(request):
 
 
 def eliminar(request, id):
-    #obtener la publicacion
     post = Post.objects.get(id=id)
-    #eliminar la publicacion
     post.delete()
     return redirect("muro") #redirecciona a la pagina muro
 

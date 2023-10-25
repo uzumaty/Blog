@@ -17,10 +17,14 @@
             <div class="col-md-4">
                 <div class="card" style="width: 70%; margin:10px 50px 30px; height: 300px; overflow-y: auto;">
                     <h3>{{ post.titulo }}</h3>
-                    <img src="{{ post.imagen.url }}" height="200px" class="card-img-top" alt="{{ post.titulo }}" style="padding:10px;">
+                    {% if post.imagen %}
+                    <img src="{{ post.imagen.url }}" height="200px" class="card-img-top" alt="{{ post.titulo }}"
+                        style="padding:10px;">
+                    {% endif %}
                     <div class="card-body">
                         <p class="card-text" style="justify-content: center;">{{ post.contenido }}</p>
-                        <a name="" id="" class="btn btn-dark" href="{% url 'editar' post.id %}" role="button">Editar</a> |
+                        <a name="" id="" class="btn btn-dark" href="{% url 'editar' post.id %}" role="button">Editar</a>
+                        |
                         <a name="" id="btnBorrar{{ post.id }}" class="btn btn-danger"
                             href="{% url 'eliminar' post.id %}" role="button">Borrar</a>
                         <br>
@@ -41,7 +45,7 @@
         <br><br><br><br>
         {% endif %}
         <div class="card-footer text-muted" style="border-color:white;">
-            <br>       
+            <br>
         </div>
         <div class="d-grid gap-1 col-5 mx-auto">
             <a name="" id="" class="btn btn-danger" href="{% url 'publicaciones' %}" role="button">Nueva publicación</a>

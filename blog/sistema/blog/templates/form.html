@@ -17,6 +17,7 @@
                 id=""
                 placeholder="{{ campo.label }}"
                 value="{{ campo.value | default:''}}"
+                {% if campo.field.required %} required {% endif %}  <!-- Agregado: hace el campo obligatorio -->
             />
         </div>
     {% endfor %}
@@ -36,6 +37,18 @@
     // Agrega un evento para manejar el clic en el botón de publicar
     document.getElementById('btnPublicar').addEventListener('click', function (event) {
         event.preventDefault(); // Prevenir el comportamiento normal del formulario
+
+        // Verificar si se ha ingresado una imagen
+        var inputImagen = document.querySelector('[type="file"]');
+        if (!inputImagen.files.length) {
+            // Mostrar Sweet Alert indicando que se debe insertar una imagen
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor, inserta una imagen.',
+                icon: 'error',
+            });
+            return;  // Detener el envío del formulario
+        }
 
         Swal.fire({
             title: '¿Estás seguro?',
